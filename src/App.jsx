@@ -1,84 +1,93 @@
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { LayoutDashboard, Users, Truck, Settings, Bell } from 'lucide-react'
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 
-export default function App() {
-  const [count, setCount] = useState(0)
-  const [isDark, setIsDark] = useState(() => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-  })
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  }, [isDark])
-
+function App() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6 bg-background text-foreground transition-colors duration-200">
-      <div className="w-full max-w-2xl space-y-8 text-center">
-        {/* Header Badge & Title */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground shadow-xs">
-            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-            Vite + React (JavaScript) + shadcn/ui
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            create-shadcn-js
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-lg mx-auto">
-            Zero-config Vite + Tailwind CSS + shadcn/ui setup for JavaScript. Path aliases, configs, and components ready to roll.
-          </p>
-        </div>
+    <div className="grid h-screen grid-cols-[250px_1fr] bg-slate-50">
+      <aside className='flex flex-col border-r bg-white p-4'>
+        <h1 className='text-xl font-bold mb-8'>Sovereign Admin</h1>
+        <nav className='flex flex-col gap-2'>
+          <a href="" className="flex items-center gap-3 rounded-md p-2 text-slate-500 hover:bg-slate-100">
+            <LayoutDashboard /> Dashboard
+          </a>
+          <a href="" className="flex items-center gap-3 rounded-md p-2 text-slate-500 hover:bg-slate-100">
+            <Users /> Drivers
+          </a>
+          <a href="" className="flex items-center gap-3 rounded-md p-2 text-slate-500 hover:bg-slate-100">
+            <Truck /> Orders
+          </a>
+          <a href="" className="flex items-center gap-3 rounded-md p-2 text-slate-500 hover:bg-slate-100">
+            <Settings /> Settings
+          </a>
+        </nav>
+      </aside>
 
-        {/* Interactive Showcase Card */}
-        <div className="rounded-xl border border-border bg-card p-6 shadow-sm space-y-6 text-card-foreground">
-          <div className="flex items-center justify-between border-b border-border/60 pb-4">
-            <div className="text-left">
-              <h2 className="text-sm font-semibold">Interactive Component Demo</h2>
-              <p className="text-xs text-muted-foreground">Tailwind CSS theme tokens & Radix/Base primitives</p>
+      <main className='flex flex-col overflow-y-auto'>
+        <header className='flex h-16 items-center justify-between border-b bg-white px-8'>
+          <h1 className='text-lg font-semibold'>Admin Dashboard</h1>
+          <div className='flex items-center gap-4'>
+            <Bell size={20} />
+            <div className='h-8 w-8 rounded-full bg-slate-300 flex items-center justify-center text-sm font-bold'>
+              GO
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsDark((prev) => !prev)}
-            >
-              {isDark ? "Light Mode" : "Dark Mode"}
-            </Button>
+          </div>
+        </header>
+
+        <div className="p-8 space-y-6">
+          <h2 className='text-2xl font-bold'>Overview</h2>
+          <div className="grid gap-4 md:grid-cols-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className='text-sm text-slate-500'>Total Orders</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">1,248</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className='text-sm text-slate-500'>Active Drivers</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">42</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className='text-sm text-slate-500'>Total GMV</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">₦4.2M</div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className='text-sm text-slate-500'>Pending Payouts</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">₦850k</div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Button Variants Preview */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button onClick={() => setCount((c) => c + 1)}>
-              Clicked {count} {count === 1 ? "time" : "times"}
-            </Button>
-            <Button variant="secondary" onClick={() => setCount(0)}>
-              Reset Count
-            </Button>
-            <Button variant="outline">
-              Outline
-            </Button>
-            <Button variant="ghost">
-              Ghost
-            </Button>
-            <Button variant="destructive">
-              Destructive
-            </Button>
-          </div>
-
-          {/* Code snippet suggestion */}
-          <div className="rounded-lg bg-muted/60 p-4 text-left font-mono text-xs text-muted-foreground border border-border/40">
-            <p className="text-foreground font-semibold mb-1">Add more components anytime:</p>
-            <code>npx shadcn@latest add dialog dropdown-menu input table</code>
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card className='h-64 flex items-center justify-center text-slate-400'>
+              Chart Placeholder
+            </Card>
+            <Card className='h-64 flex items-center justify-center text-slate-400'>
+              Table Placeholder
+            </Card>
           </div>
         </div>
-
-        {/* Footer info */}
-        <p className="text-xs text-muted-foreground">
-          Edit <code className="font-semibold text-foreground">src/App.jsx</code> to start building your application.
-        </p>
-      </div>
+      </main>
     </div>
   )
 }
+
+export default App;
+
+// The End-of-Day Answer:
+// Putting overflow-y-auto on the main tag locks the outer layout to the screen height and restricts scrolling strictly to the content area, keeping the sidebard fixed in place while the data table scrolls independently.
