@@ -44,7 +44,7 @@ function App() {
 
       {/* Admin Dashboard */}
 
-      {/* <main className='flex flex-col overflow-y-auto'>
+      <main className='flex flex-col overflow-y-auto'>
         <header className='flex h-16 items-center justify-between border-b bg-white px-8'>
           <h1 className='text-lg font-semibold'>Admin Dashboard</h1>
           <div className='flex items-center gap-4'>
@@ -132,10 +132,10 @@ function App() {
 
           </div>
         </div>
-      </main> */}
+      </main>
 
       {/* Contractor View */}
-      <ContractorView />
+      {/* <ContractorView /> */}
     </div>
   )
 }
