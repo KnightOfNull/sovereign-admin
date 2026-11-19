@@ -1,5 +1,16 @@
 import { LayoutDashboard, Users, Truck, Settings, Bell } from 'lucide-react'
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+
+const chartData = [
+  { name: 'Mon', orders: 20 },
+  { name: 'Tue', orders: 30 },
+  { name: 'Wed', orders: 25 },
+  { name: 'Thu', orders: 35 },
+  { name: 'Fri', orders: 40 },
+  { name: 'Sat', orders: 50 },
+  { name: 'Sun', orders: 45 }
+]
 
 function App() {
   return (
@@ -74,8 +85,16 @@ function App() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <Card className='h-64 flex items-center justify-center text-slate-400'>
-              Chart Placeholder
+            <Card className='h-64 p-4'>
+              <ResponsiveContainer width='100%' height='100%'>
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray='3 3' />
+                  <XAxis dataKey='name' />
+                  <YAxis />
+                  <Bar dataKey='orders' fill='#0f172a' radius={[4, 4, 0, 0]} />
+                  <Tooltip />
+                </BarChart>
+              </ResponsiveContainer>
             </Card>
             <Card className='h-64 flex items-center justify-center text-slate-400'>
               Table Placeholder
