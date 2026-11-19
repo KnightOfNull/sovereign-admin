@@ -1,6 +1,7 @@
 import { LayoutDashboard, Users, Truck, Settings, Bell } from 'lucide-react'
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'
 
 const chartData = [
   { name: 'Mon', orders: 20 },
@@ -10,6 +11,13 @@ const chartData = [
   { name: 'Fri', orders: 40 },
   { name: 'Sat', orders: 50 },
   { name: 'Sun', orders: 45 }
+]
+
+const recentOrders = [
+  { id: '#1001', driver: 'Emeka', route: ' Lagos to Ibadan ', plate: 'KJA-123-XY' },
+  { id: '#1002', driver: 'Chinedu', route: ' Abuja to Kaduna ', plate: 'KJA-456-ZY' },
+  { id: '#1003', driver: 'Aisha', route: ' Kano to Sokoto ', plate: 'KJA-789-AB' },
+  { id: '#1004', driver: 'Tunde', route: ' Port Harcourt to Warri ', plate: 'KJA-321-CD' },
 ]
 
 function App() {
@@ -96,9 +104,29 @@ function App() {
                 </BarChart>
               </ResponsiveContainer>
             </Card>
-            <Card className='h-64 flex items-center justify-center text-slate-400'>
-              Table Placeholder
+            <Card className='h-64 p-4 overflow-y-auto'>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Order ID</TableHead>
+                    <TableHead>Driver</TableHead>
+                    <TableHead>Route</TableHead>
+                    <TableHead>Plate No.</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {recentOrders.map(order => (
+                    <TableRow key={order.id}>
+                      <TableCell>{order.id}</TableCell>
+                      <TableCell>{order.driver}</TableCell>
+                      <TableCell>{order.route}</TableCell>
+                      <TableCell>{order.plate}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </Card>
+
           </div>
         </div>
       </main>
@@ -109,4 +137,5 @@ function App() {
 export default App;
 
 // The End-of-Day Answer:
-// Putting overflow-y-auto on the main tag locks the outer layout to the screen height and restricts scrolling strictly to the content area, keeping the sidebard fixed in place while the data table scrolls independently.
+// React uses the unique key prop to track each element's identity across renders during its diffing (reconciliation) process.
+// When your data changes—such as when an order is deleted, added, or reordered—React compares the new list of elements with the previous one to figure out the minimum number of changes needed on the real screen (the DOM).
