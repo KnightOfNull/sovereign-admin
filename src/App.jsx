@@ -2,6 +2,7 @@ import { LayoutDashboard, Users, Truck, Settings, Bell } from 'lucide-react'
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'
+import ContractorView from '@/components/ContractorView'
 
 const chartData = [
   { name: 'Mon', orders: 20 },
@@ -41,7 +42,9 @@ function App() {
         </nav>
       </aside>
 
-      <main className='flex flex-col overflow-y-auto'>
+      {/* Admin Dashboard */}
+
+      {/* <main className='flex flex-col overflow-y-auto'>
         <header className='flex h-16 items-center justify-between border-b bg-white px-8'>
           <h1 className='text-lg font-semibold'>Admin Dashboard</h1>
           <div className='flex items-center gap-4'>
@@ -129,7 +132,10 @@ function App() {
 
           </div>
         </div>
-      </main>
+      </main> */}
+
+      {/* Contractor View */}
+      <ContractorView />
     </div>
   )
 }
